@@ -1,58 +1,57 @@
+The `main` branch is the CDK v1 project.
 
-# Welcome to your CDK Python project!
-
-This is a blank project for CDK development with Python.
-
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
-
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
-
-To manually create a virtualenv on MacOS and Linux:
+Deployment looked like this:
 
 ```
-$ python3 -m venv .venv
+$ cdk1 deploy
+
+✨  Synthesis time: 1.5s
+
+This deployment will make potentially sensitive changes according to your current security approval level (--require-approval broadening).
+Please confirm you intend to make the following modifications:
+
+IAM Statement Changes
+┌───┬─────────────────────────────────────┬────────┬────────────────┬──────────────────────────────┬───────────┐
+│   │ Resource                            │ Effect │ Action         │ Principal                    │ Condition │
+├───┼─────────────────────────────────────┼────────┼────────────────┼──────────────────────────────┼───────────┤
+│ + │ ${pjc-test-headers/ServiceRole.Arn} │ Allow  │ sts:AssumeRole │ Service:lambda.amazonaws.com │           │
+└───┴─────────────────────────────────────┴────────┴────────────────┴──────────────────────────────┴───────────┘
+IAM Policy Changes
+┌───┬─────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
+│   │ Resource                        │ Managed Policy ARN                                                             │
+├───┼─────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
+│ + │ ${pjc-test-headers/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+└───┴─────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
+(NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
+
+Do you wish to deploy these changes (y/n)? y
+AwsCdk20650Stack: deploying...
+[0%] start: Publishing 96db6d3d6f8bdf46b66225a2dbd32c04ed02cc00b827431ec356b680eb61e973:current
+[100%] success: Published 96db6d3d6f8bdf46b66225a2dbd32c04ed02cc00b827431ec356b680eb61e973:current
+AwsCdk20650Stack: creating CloudFormation changeset...
+
+ ✅  AwsCdk20650Stack
+
+✨  Deployment time: 53.13s
+
+Stack ARN:
+arn:aws:cloudformation:us-east-1:621503700583:stack/AwsCdk20650Stack/1bcc7790-e8a7-11ec-a0a7-0ee5e157a7d5
+
+✨  Total time: 54.63s
+
+
+NOTICES
+
+19836   AWS CDK v1 entering maintenance mode soon
+
+        Overview: AWS CDK v1 is entering maintenance mode on June 1, 2022.
+                  Migrate to AWS CDK v2 to continue to get the latest features
+                  and fixes!
+
+        Affected versions: framework: 1.*, cli: 1.*
+
+        More information at: https://github.com/aws/aws-cdk/issues/19836
+
+
+If you don’t want to see a notice anymore, use "cdk acknowledge <id>". For example, "cdk acknowledge 19836".
 ```
-
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-$ source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
-```
-
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!
