@@ -2,14 +2,15 @@
 # the CDK's core module.  The following line also imports it as `core` for use
 # with examples from the CDK Developer's Guide, which are in the process of
 # being updated to use `cdk`.  You may delete this import if you don't need it.
-from aws_cdk import core as cdk
+from constructs import Construct
+from aws_cdk import Stack
 from aws_cdk import aws_lambda as lambda_
 
 CLOUDFRONT_ADD_SECURITY_HEADERS_NAME = "pjc-test-headers"
 
-class AwsCdk20650Stack(cdk.Stack):
+class AwsCdk20650Stack(Stack):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         lambda_security_header = lambda_.Function(
